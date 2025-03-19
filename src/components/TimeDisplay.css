@@ -1,26 +1,38 @@
-.timer-display {
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: monospace;
-  color: #333;
+.time-display-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.time-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
   cursor: pointer;
 }
 
-.timer-input {
-  font-size: 3rem;
+.time-text {
+  font-size: 24px;
   font-weight: bold;
-  font-family: monospace;
   color: #333;
-  width: 200px;
-  text-align: center;
-  border: 2px solid #007bff;
-  border-radius: 5px;
-  padding: 0.5rem;
-  background-color: white;
 }
 
-.timer-input:focus {
+.time-input {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  width: 80px;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid #4CAF50;
   outline: none;
-  border-color: #0056b3;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  background: transparent;
+  padding: 0;
+}
+
+.time-input:focus {
+  border-bottom-color: #2196F3;
 } 
