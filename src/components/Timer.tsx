@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import TimerHeader from './TimerHeader';
+import { formatTime, parseTime } from '../utils/timeUtils';
 import './Timer.css';
 
 interface TimerProps {
@@ -52,18 +53,6 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
       }
     };
   }, [isRunning, time]);
-
-  const formatTime = (seconds: number): string => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-  };
-
-  const parseTime = (timeString: string): number => {
-    const [minutes, seconds] = timeString.split(':').map(Number);
-    if (isNaN(minutes) || isNaN(seconds)) return 0;
-    return minutes * 60 + seconds;
-  };
 
   const startEditing = () => {
     setIsEditing(true);
