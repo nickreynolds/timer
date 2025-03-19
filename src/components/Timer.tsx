@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Timer.css';
 
-const Timer: React.FC = () => {
+interface TimerProps {
+  onRemove: () => void;
+}
+
+const Timer: React.FC<TimerProps> = ({ onRemove }) => {
   const [time, setTime] = useState<number>(60); // Start at 1 minute (60 seconds)
   const [isRunning, setIsRunning] = useState<boolean>(false); // Start paused
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -103,6 +107,7 @@ const Timer: React.FC = () => {
 
   return (
     <div className="timer-container">
+      <button className="remove-button" onClick={onRemove}>×</button>
       <div className="timer-display">
         {isEditing ? (
           <input
