@@ -7,6 +7,7 @@ interface TimerProps {
 
 const Timer: React.FC<TimerProps> = ({ onRemove }) => {
   const [time, setTime] = useState<number>(60); // Start at 1 minute (60 seconds)
+  const [originalTime, setOriginalTime] = useState<number>(60); // Track original starting time
   const [isRunning, setIsRunning] = useState<boolean>(false); // Start paused
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editValue, setEditValue] = useState<string>('');
@@ -67,7 +68,6 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
     setIsEditing(true);
     setIsRunning(false);
     setEditValue(formatTime(time));
-    // Use setTimeout to ensure the input is rendered before focusing
     setTimeout(() => {
       inputRef.current?.focus();
     }, 0);
@@ -78,6 +78,7 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
     const newTime = parseTime(editValue);
     if (newTime > 0) {
       setTime(newTime);
+      setOriginalTime(newTime); // Update original time when manually edited
     }
     setIsRunning(true);
   };
@@ -90,12 +91,10 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
 
   const togglePause = () => {
     if (isRunning) {
-      // When pausing, calculate how long until the next tick
       const now = Date.now();
       const timeSinceLastTick = now - lastTickTime.current;
       nextTickDelay.current = 1000 - (timeSinceLastTick % 1000);
     } else {
-      // When starting, update the last tick time
       lastTickTime.current = Date.now();
     }
     setIsRunning(prev => !prev);
@@ -103,11 +102,23 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
 
   const addMinute = () => {
     setTime(prevTime => prevTime + 60);
+    if (!isRunning) {
+      setOriginalTime(prevTime => prevTime + 60); // Only update original time when paused
+    }
+  };
+
+  const resetTimer = () => {
+    setTime(originalTime);
+    setIsRunning(false);
+    nextTickDelay.current = 0;
   };
 
   return (
     <div className="timer-container">
       <button className="remove-button" onClick={onRemove}>×</button>
+      <div className="timer-header">
+        Original: {formatTime(originalTime)}
+      </div>
       <div className="timer-display">
         {isEditing ? (
           <input
@@ -126,11 +137,14 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
         )}
       </div>
       <div className="timer-controls">
-        <button onClick={togglePause} className="timer-button">
-          {isRunning ? 'Pause' : 'Start'}
-        </button>
         <button onClick={addMinute} className="timer-button">
-          Add 1 Minute
+          +1:00
+        </button>
+        <button onClick={togglePause} className="timer-button icon-button">
+          {isRunning ? '⏸' : '▶'}
+        </button>
+        <button onClick={resetTimer} className="timer-button">
+          Reset
         </button>
       </div>
     </div>
