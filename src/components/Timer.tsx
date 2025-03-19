@@ -27,8 +27,7 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
 
   return (
     <div className="timer-container">
-      <button className="remove-button" onClick={onRemove}>×</button>
-      <TimerHeader originalTime={originalTime} />
+      <TimerHeader originalTime={originalTime} onRemove={onRemove} />
       <TimeDisplay
         time={time}
         originalTime={originalTime}

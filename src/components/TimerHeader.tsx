@@ -4,12 +4,14 @@ import './TimerHeader.css';
 
 interface TimerHeaderProps {
   originalTime: number;
+  onRemove: () => void;
 }
 
-const TimerHeader: React.FC<TimerHeaderProps> = ({ originalTime }) => {
+const TimerHeader: React.FC<TimerHeaderProps> = ({ originalTime, onRemove }) => {
   return (
     <div className="timer-header">
-      {formatTime(originalTime)} Timer
+      <div >{formatTime(originalTime)} Timer</div>
+      <button className="remove-button" onClick={onRemove}>×</button>
     </div>
   );
 };

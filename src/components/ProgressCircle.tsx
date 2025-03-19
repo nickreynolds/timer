@@ -14,7 +14,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress }) => {
       {/* Background circle */}
       <circle
         className="progress-ring__circle-bg"
-        stroke="#e0e0e0"
+        stroke="#253238"
         strokeWidth="4"
         fill="transparent"
         r="45"
@@ -24,7 +24,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress }) => {
       {/* Progress circle */}
       <circle
         className="progress-ring__circle"
-        stroke="#4CAF50"
+        stroke="#dfedfb"
         strokeWidth="4"
         fill="transparent"
         r="45"
