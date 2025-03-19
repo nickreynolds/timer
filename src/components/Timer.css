@@ -34,33 +34,6 @@
   background-color: #cc0000;
 }
 
-.timer-display {
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: monospace;
-  color: #333;
-  cursor: pointer;
-}
-
-.timer-input {
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: monospace;
-  color: #333;
-  width: 200px;
-  text-align: center;
-  border: 2px solid #007bff;
-  border-radius: 5px;
-  padding: 0.5rem;
-  background-color: white;
-}
-
-.timer-input:focus {
-  outline: none;
-  border-color: #0056b3;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
-
 .timer-controls {
   display: flex;
   gap: 0.5rem;
