@@ -4,8 +4,11 @@ import './Timer.css';
 const Timer: React.FC = () => {
   const [time, setTime] = useState<number>(60); // Start at 1 minute (60 seconds)
   const [isRunning, setIsRunning] = useState<boolean>(false); // Start paused
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [editValue, setEditValue] = useState<string>('');
   const lastTickTime = useRef<number>(Date.now());
   const nextTickDelay = useRef<number>(0);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
@@ -50,6 +53,37 @@ const Timer: React.FC = () => {
     return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
+  const parseTime = (timeString: string): number => {
+    const [minutes, seconds] = timeString.split(':').map(Number);
+    if (isNaN(minutes) || isNaN(seconds)) return 0;
+    return minutes * 60 + seconds;
+  };
+
+  const startEditing = () => {
+    setIsEditing(true);
+    setIsRunning(false);
+    setEditValue(formatTime(time));
+    // Use setTimeout to ensure the input is rendered before focusing
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
+  };
+
+  const handleBlur = () => {
+    setIsEditing(false);
+    const newTime = parseTime(editValue);
+    if (newTime > 0) {
+      setTime(newTime);
+    }
+    setIsRunning(true);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      inputRef.current?.blur();
+    }
+  };
+
   const togglePause = () => {
     if (isRunning) {
       // When pausing, calculate how long until the next tick
@@ -69,7 +103,23 @@ const Timer: React.FC = () => {
 
   return (
     <div className="timer-container">
-      <div className="timer-display">{formatTime(time)}</div>
+      <div className="timer-display">
+        {isEditing ? (
+          <input
+            ref={inputRef}
+            type="text"
+            value={editValue}
+            onChange={(e) => setEditValue(e.target.value)}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
+            pattern="[0-9]{2}:[0-9]{2}"
+            placeholder="MM:SS"
+            className="timer-input"
+          />
+        ) : (
+          <span onClick={startEditing}>{formatTime(time)}</span>
+        )}
+      </div>
       <div className="timer-controls">
         <button onClick={togglePause} className="timer-button">
           {isRunning ? 'Pause' : 'Start'}
