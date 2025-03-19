@@ -31,6 +31,7 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
       <TimerHeader originalTime={originalTime} />
       <TimeDisplay
         time={time}
+        originalTime={originalTime}
         isEditing={isEditing}
         editValue={editValue}
         onEditValueChange={setEditValue}

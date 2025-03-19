@@ -86,9 +86,9 @@ export const useTimer = () => {
 
   const addMinute = () => {
     setTime(prevTime => prevTime + 60);
-    if (!isRunning) {
+    // if (!isRunning) {
       setOriginalTime(prevTime => prevTime + 60); // Only update original time when paused
-    }
+    // }
   };
 
   const resetTimer = () => {
