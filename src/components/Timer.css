@@ -1,6 +1,6 @@
 .timer-container {
   position: relative;
-  background: white;
+  background: #4d7189;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -45,6 +45,17 @@
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.2s;
+}
+
+
+.timer-ghost-button {
+  background: none;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Roboto';
 }
 
 .timer-button:hover {

@@ -41,13 +41,13 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
         inputRef={inputRef}
       />
       <div className="timer-controls">
-        <button onClick={addMinute} className="timer-button">
+        <button onClick={addMinute} className="timer-ghost-button">
           +1:00
         </button>
         <button onClick={togglePause} className="timer-button icon-button">
           {isRunning ? '⏸' : '▶'}
         </button>
-        <button onClick={resetTimer} className="timer-button">
+        <button onClick={resetTimer} className="timer-ghost-button">
           Reset
         </button>
       </div>
