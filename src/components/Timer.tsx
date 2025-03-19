@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import TimerHeader from './TimerHeader';
 import './Timer.css';
 
 interface TimerProps {
@@ -116,9 +117,7 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
   return (
     <div className="timer-container">
       <button className="remove-button" onClick={onRemove}>×</button>
-      <div className="timer-header">
-        Original: {formatTime(originalTime)}
-      </div>
+      <TimerHeader originalTime={originalTime} />
       <div className="timer-display">
         {isEditing ? (
           <input
