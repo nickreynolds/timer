@@ -5,7 +5,7 @@ import { useTimer } from "../hooks/useTimer";
 import GhostButton from "./shared/GhostButton";
 import PrimaryButton from "./shared/PrimaryButton";
 import { Pause, Play } from "lucide-react";
-
+import "./Timer.css";
 interface TimerProps {
   onRemove: () => void;
 }
@@ -30,7 +30,7 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
   } = useTimer();
 
   return (
-    <div className="flex flex-col w-[250px]">
+    <div className={(time === 0 && isRunning) ? "flex flex-col w-[250px] swing" : "flex flex-col w-[250px]"} >
       <TimerHeader originalTime={originalTime} onRemove={onRemove} />
       <div className="bg-secondary-background rounded-b-md">
         <TimeDisplay
