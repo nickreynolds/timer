@@ -6,9 +6,10 @@ interface ProgressCircleProps {
   progress: number; // 0 to 100
   onDragStart: () => void;
   onDrag: (angle: number) => void;
+  isRunning: boolean;
 }
 
-const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress, onDragStart, onDrag }) => {
+const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress, onDragStart, onDrag, isRunning }) => {
 
   // make sure progress is between 0 and 100
   progress = Math.max(0, Math.min(progress, 100));
@@ -20,36 +21,8 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress, onDragStart, 
     });
 
   React.useEffect(() => {
-    console.log("progress:", progress);
     (setFromAngle as (angle: number) => void)(progress / 100);
   }, [progress]);
-
-    // return (
-    //     <div className="radial-progress-bar">
-    //         <div className="radial-progress-bar__half radial-progress-bar__half--1" />
-    //         <div
-    //             className="radial-progress-bar__half radial-progress-bar__half--2"
-    //             style={{
-    //                 background: angle > 0.5 ? 'rgb(99 102 241)' : 'inherit',
-    //                 transform: `rotate(${angle > 0.5 ? 360 * angle - 180 : 360 * angle}deg)`,
-    //             }}
-    //         />
-
-    //         <div className="radial-progress-bar__overlay" />
-
-    //         <div className="radial-progress-bar__circle">
-    //             <div
-    //                 className="draggable"
-    //                 ref={draggbleRef}
-    //                 style={{
-    //                     transform: `translate(${dx}px, ${dy}px)`,
-    //                     zIndex: 9999,
-    //                 }}
-    //             />
-    //             {Math.round(angle * 100)}%
-    //         </div>
-    //     </div>
-    // );
 
   const circumference = 2 * Math.PI * 45; // r=45
   const strokeDashoffset = circumference - (progress / 100) * circumference;
@@ -75,7 +48,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress, onDragStart, 
       />
       {/* Progress circle */}
       <circle
-        className="progress-ring__circle stroke-red"
+        className={isRunning ? "progress-ring__circle" : ""}
         stroke="#dfedfb"
         strokeWidth="4"
         fill="transparent"

@@ -38,6 +38,7 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
           originalTime={originalTime}
           isEditing={isEditing}
           editValue={editValue}
+          isRunning={isRunning}
           onEditValueChange={setEditValue}
           onStartEditing={startEditing}
           onBlur={handleBlur}

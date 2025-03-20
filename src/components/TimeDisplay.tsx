@@ -6,6 +6,7 @@ interface TimeDisplayProps {
   time: number;
   originalTime: number;
   isEditing: boolean;
+  isRunning: boolean;
   editValue: string;
   onEditValueChange: (value: string) => void;
   onStartEditing: () => void;
@@ -21,6 +22,7 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
   originalTime,
   isEditing,
   editValue,
+  isRunning,
   onEditValueChange,
   onStartEditing,
   onBlur,
@@ -47,7 +49,7 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
 
   return (
     <div className="relative w-[120px] h-[120px] mx-auto">
-      <ProgressCircle progress={progress} onDragStart={pauseTimer} onDrag={onNewAngle} />
+      <ProgressCircle progress={progress} onDragStart={pauseTimer} onDrag={onNewAngle} isRunning={isRunning} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center cursor-pointer">
         {isEditing ? (
           <div className="relative">
