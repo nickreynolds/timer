@@ -89,9 +89,9 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress, onDragStart, 
       />
 
     </svg>
-      <div className="radial-progress-bar__circle">
+      <div className="radial-progress-bar__circle" >
         <div
-          className="draggable"
+          className="bg-foreground rounded-full absolute top-0 left-0 w-4 h-4"
           ref={draggbleRef}
           style={{
               transform: `translate(${dx}px, ${dy}px)`,

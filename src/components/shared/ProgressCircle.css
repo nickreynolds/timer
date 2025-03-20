@@ -52,16 +52,18 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  
 }
 
 .draggable {
-  background: rgb(30 27 75);
+  background: #ffffff;
   border-radius: 50%;
   height: 1rem;
   width: 1rem;
 
   position: absolute;
   top: 0;
+  left: 0;
 
   /* Indicate that the element is draggable */
   cursor: move;
