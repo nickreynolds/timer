@@ -28,21 +28,38 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
 }) => {
   const progress = (time / originalTime) * 100;
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+    if (value.length <= 4) { // Only allow up to 4 digits
+      console.log("ON EDIT VALUE CHANGE", value);
+      onEditValueChange(value);
+    }
+  };
+
+  const formatEditValue = (value: string) => {
+    value = value.replace(/\D/g, '');
+    if (value.length <= 2) return value;
+    return `${value.slice(0, 2)}:${value.slice(2)}`;
+  };
+
   return (
-    <div className="relative w-[120px] h-[120px] m-auto">
+    <div className="relative w-[120px] h-[120px] mx-auto">
       <ProgressCircle progress={progress} />
-      <div className="time-display">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center cursor-pointer">
         {isEditing ? (
-          <input
-            ref={inputRef}
-            type="text"
-            value={editValue}
-            onChange={(e) => onEditValueChange(e.target.value)}
-            onBlur={onBlur}
-            onKeyDown={onKeyDown}
-            className="time-input font-medium text-foreground text-2xl"
-            aria-label="Time Input"
-          />
+          <div className="relative">
+            <input
+              ref={inputRef}
+              type="text"
+              value={formatEditValue(editValue)}
+              onChange={handleInputChange}
+              onBlur={onBlur}
+              onKeyDown={onKeyDown}
+              className="w-20 text-2xl font-medium text-foreground text-center border-none border-b-2 border-timer-primary focus:border-timer-secondary outline-none bg-transparent p-0"
+              maxLength={5}
+              placeholder="00:00"
+            />
+          </div>
         ) : (
           <button onClick={onStartEditing} className="font-medium text-foreground text-2xl" aria-label="Edit Time  ">
             {formatTime(time)}

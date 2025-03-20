@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { formatTime, parseTime } from '../utils/timeUtils';
+import { formatTime, parseEditValue, parseTime } from '../utils/timeUtils';
 
 export const useTimer = () => {
   const [time, setTime] = useState<number>(60); // Start at 1 minute (60 seconds)
@@ -59,7 +59,7 @@ export const useTimer = () => {
 
   const handleBlur = () => {
     setIsEditing(false);
-    const newTime = parseTime(editValue);
+    const newTime = parseEditValue(editValue);
     if (newTime > 0) {
       setTime(newTime);
       setOriginalTime(newTime);
