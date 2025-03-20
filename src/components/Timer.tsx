@@ -2,9 +2,8 @@ import React from "react";
 import TimerHeader from "./TimerHeader";
 import TimeDisplay from "./TimeDisplay";
 import { useTimer } from "../hooks/useTimer";
-import GhostButton from "./GhostButton";
-import PrimaryButton from "./PrimaryButton";
-import "./Timer.css";
+import GhostButton from "./shared/GhostButton";
+import PrimaryButton from "./shared/PrimaryButton";
 import { Pause, Play } from "lucide-react";
 
 interface TimerProps {

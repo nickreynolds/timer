@@ -7,6 +7,7 @@ interface ProgressCircleProps {
 
 const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress }) => {
 
+  
   // make sure progress is between 0 and 100
   progress = Math.max(0, Math.min(progress, 100));
 
@@ -19,7 +20,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress }) => {
       width="120"
       height="120"
       viewBox="0 0 120 120"
-      role="graphics-document"
+      role="graphics-document" // for testing
     >
       {/* Background circle */}
       <circle

@@ -1,7 +1,6 @@
 import React from "react";
 import { formatTime } from "../utils/timeUtils";
-import ProgressCircle from "./ProgressCircle";
-import "./TimeDisplay.css";
+import ProgressCircle from "./shared/ProgressCircle";
 
 interface TimeDisplayProps {
   time: number;
@@ -32,7 +31,6 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
     const value = e.target.value.replace(/\D/g, ""); // Remove non-digits
     if (value.length <= 4) {
       // Only allow up to 4 digits
-      console.log("ON EDIT VALUE CHANGE", value);
       onEditValueChange(value);
     }
   };

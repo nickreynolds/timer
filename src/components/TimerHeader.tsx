@@ -1,7 +1,7 @@
 import React from "react";
 import { formatTime } from "../utils/timeUtils";
 import { X } from "lucide-react";
-import GhostButton from "./GhostButton";
+import GhostButton from "./shared/GhostButton";
 interface TimerHeaderProps {
   originalTime: number;
   onRemove: () => void;
