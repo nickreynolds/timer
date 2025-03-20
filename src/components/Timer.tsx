@@ -5,6 +5,7 @@ import { useTimer } from '../hooks/useTimer';
 import GhostButton from './GhostButton';
 import PrimaryButton from './PrimaryButton';
 import './Timer.css';
+import { Pause, Play } from 'lucide-react';
 
 interface TimerProps {
   onRemove: () => void;
@@ -47,7 +48,7 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
           +1:00
         </GhostButton>
         <PrimaryButton onClick={togglePause} icon>
-          {isRunning ? '⏸' : '▶'}
+          {isRunning ? <Pause /> : <Play />}
         </PrimaryButton>
         <GhostButton onClick={resetTimer}>
           Reset

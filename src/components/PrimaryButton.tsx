@@ -12,7 +12,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   ...props 
 }) => {
   const baseClasses = 'bg-background text-foreground border-none rounded cursor-pointer hover:bg-timer-button-hover transition-colors';
-  const sizeClasses = icon ? 'w-9 h-9 flex items-center justify-center' : 'px-3 py-2 text-sm';
+  const sizeClasses = icon ? 'w-9 h-9 flex items-center justify-center rounded-full' : 'px-3 py-2 text-sm';
 
   return (
     <button
