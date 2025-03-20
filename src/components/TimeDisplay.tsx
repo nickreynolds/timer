@@ -1,7 +1,7 @@
-import React from 'react';
-import { formatTime } from '../utils/timeUtils';
-import ProgressCircle from './ProgressCircle';
-import './TimeDisplay.css';
+import React from "react";
+import { formatTime } from "../utils/timeUtils";
+import ProgressCircle from "./ProgressCircle";
+import "./TimeDisplay.css";
 
 interface TimeDisplayProps {
   time: number;
@@ -29,15 +29,16 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
   const progress = (time / originalTime) * 100;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, ''); // Remove non-digits
-    if (value.length <= 4) { // Only allow up to 4 digits
+    const value = e.target.value.replace(/\D/g, ""); // Remove non-digits
+    if (value.length <= 4) {
+      // Only allow up to 4 digits
       console.log("ON EDIT VALUE CHANGE", value);
       onEditValueChange(value);
     }
   };
 
   const formatEditValue = (value: string) => {
-    value = value.replace(/\D/g, '');
+    value = value.replace(/\D/g, "");
     if (value.length <= 2) return value;
     return `${value.slice(0, 2)}:${value.slice(2)}`;
   };
@@ -61,7 +62,11 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
             />
           </div>
         ) : (
-          <button onClick={onStartEditing} className="font-medium text-foreground text-2xl" aria-label="Edit Time  ">
+          <button
+            onClick={onStartEditing}
+            className="font-medium text-foreground text-2xl"
+            aria-label="Edit Time  "
+          >
             {formatTime(time)}
           </button>
         )}
@@ -70,4 +75,4 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
   );
 };
 
-export default TimeDisplay; 
+export default TimeDisplay;
