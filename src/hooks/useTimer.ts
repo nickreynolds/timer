@@ -11,31 +11,32 @@ export const useTimer = () => {
   const nextTickDelay = useRef<number>(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const timerStartTime = useRef<number>(Date.now());
+
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
-    let initialDelayId: NodeJS.Timeout;
+    let intervalId: number;
+    let initialDelayId: number;
 
     if (isRunning && time > 0) {
       // If we have a delay from a previous pause, schedule the first tick
       if (nextTickDelay.current > 0) {
-        initialDelayId = setTimeout(() => {
+        initialDelayId = window.setTimeout(() => {
           setTime((prevTime) => prevTime - 1);
           lastTickTime.current = Date.now();
           nextTickDelay.current = 0;
         }, nextTickDelay.current);
+      } else {
+        const secondsElapsed = originalTime - time;
+        const scheduledTime = timerStartTime.current + (secondsElapsed * 1000);
+        const diff = scheduledTime - Date.now();
+
+        // Schedule regular ticks
+        intervalId = window.setTimeout(() => {
+        
+            setTime((prevTime) => prevTime - 1);
+            lastTickTime.current = Date.now();
+          }, 1000 + diff);
       }
-
-      // Schedule regular ticks
-      intervalId = setInterval(() => {
-        const now = Date.now();
-        const timeSinceLastTick = now - lastTickTime.current;
-
-        // If we're more than 1 second since last tick, update the time
-        if (timeSinceLastTick >= 1000) {
-          setTime((prevTime) => prevTime - 1);
-          lastTickTime.current = now;
-        }
-      }, 1000);
     }
 
     return () => {
@@ -80,6 +81,8 @@ export const useTimer = () => {
       nextTickDelay.current = 1000 - (timeSinceLastTick % 1000);
     } else {
       lastTickTime.current = Date.now();
+
+      timerStartTime.current = Date.now() + nextTickDelay.current - ((originalTime - time + 1) * 1000);
     }
     setIsRunning((prev) => !prev);
   };
