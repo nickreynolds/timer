@@ -41,9 +41,10 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
             onBlur={onBlur}
             onKeyDown={onKeyDown}
             className="time-input font-medium text-foreground text-2xl"
+            aria-label="Time Input"
           />
         ) : (
-          <button onClick={onStartEditing} className="font-medium text-foreground text-2xl" tabIndex={0}>
+          <button onClick={onStartEditing} className="font-medium text-foreground text-2xl" aria-label="Edit Time  ">
             {formatTime(time)}
           </button>
         )}

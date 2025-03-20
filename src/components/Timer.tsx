@@ -47,7 +47,7 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
         <GhostButton onClick={addMinute}>
           +1:00
         </GhostButton>
-        <PrimaryButton onClick={togglePause} icon>
+        <PrimaryButton onClick={togglePause} icon aria-label={isRunning ? 'Pause' : 'Play'}>
           {isRunning ? <Pause /> : <Play />}
         </PrimaryButton>
         <GhostButton onClick={resetTimer}>
