@@ -2,6 +2,8 @@ import React from 'react';
 import TimerHeader from './TimerHeader';
 import TimeDisplay from './TimeDisplay';
 import { useTimer } from '../hooks/useTimer';
+import GhostButton from './GhostButton';
+import PrimaryButton from './PrimaryButton';
 import './Timer.css';
 
 interface TimerProps {
@@ -40,16 +42,16 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
         onKeyDown={handleKeyDown}
         inputRef={inputRef}
       />
-      <div className="flex gap-2 mt-2 mb-2 justify-center">
-        <button onClick={addMinute} className="timer-ghost-button">
+      <div className="flex justify-center gap-2.5 mt-4 mb-4">
+        <GhostButton onClick={addMinute}>
           +1:00
-        </button>
-        <button onClick={togglePause} className="timer-button icon-button">
+        </GhostButton>
+        <PrimaryButton onClick={togglePause} icon>
           {isRunning ? '⏸' : '▶'}
-        </button>
-        <button onClick={resetTimer} className="timer-ghost-button">
+        </PrimaryButton>
+        <GhostButton onClick={resetTimer}>
           Reset
-        </button>
+        </GhostButton>
       </div>
       </div>
     </div>
