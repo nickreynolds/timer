@@ -25,6 +25,8 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
     togglePause,
     addMinute,
     resetTimer,
+    pauseTimer,
+    onNewAngle,
   } = useTimer();
 
   return (
@@ -41,6 +43,8 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
           inputRef={inputRef}
+          pauseTimer={pauseTimer}
+          onNewAngle={onNewAngle}
         />
         <div className="flex justify-center gap-2.5 mt-4 mb-4">
           <GhostButton onClick={addMinute}>+1:00</GhostButton>

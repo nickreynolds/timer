@@ -12,6 +12,8 @@ interface TimeDisplayProps {
   onBlur: () => void;
   onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   inputRef: React.RefObject<HTMLInputElement | null>;
+  pauseTimer: () => void;
+  onNewAngle: (angle: number) => void;
 }
 
 const TimeDisplay: React.FC<TimeDisplayProps> = ({
@@ -24,6 +26,8 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
   onBlur,
   onKeyDown,
   inputRef,
+  pauseTimer,
+  onNewAngle,
 }) => {
   const progress = (time / originalTime) * 100;
 
@@ -43,7 +47,7 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
 
   return (
     <div className="relative w-[120px] h-[120px] mx-auto">
-      <ProgressCircle progress={progress} />
+      <ProgressCircle progress={progress} onDragStart={pauseTimer} onDrag={onNewAngle} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center cursor-pointer">
         {isEditing ? (
           <div className="relative">

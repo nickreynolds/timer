@@ -62,7 +62,6 @@
 
   position: absolute;
   top: 0;
-  left: 0;
 
   /* Indicate that the element is draggable */
   cursor: move;

@@ -84,6 +84,10 @@ export const useTimer = () => {
     setIsRunning((prev) => !prev);
   };
 
+  const pauseTimer = () => {
+    setIsRunning(false);
+  }
+
   const addMinute = () => {
     const now = Date.now();
     const timeSinceLastTick = now - lastTickTime.current;
@@ -105,6 +109,12 @@ export const useTimer = () => {
     nextTickDelay.current = 0;
   };
 
+  const onNewAngle = (angle: number) => {
+    console.log("onNewAngle", angle);
+    const newTime = Math.round(angle * originalTime);
+    setTime(newTime);
+  };
+
   return {
     time,
     originalTime,
@@ -119,5 +129,7 @@ export const useTimer = () => {
     togglePause,
     addMinute,
     resetTimer,
+    pauseTimer,
+    onNewAngle,
   };
 };
