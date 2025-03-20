@@ -85,10 +85,18 @@ export const useTimer = () => {
   };
 
   const addMinute = () => {
+    const now = Date.now();
+    const timeSinceLastTick = now - lastTickTime.current;
+    const remainingDelay = 1000 - (timeSinceLastTick % 1000);
+
     setTime(prevTime => prevTime + 60);
-    // if (!isRunning) {
-      setOriginalTime(prevTime => prevTime + 60); // Only update original time when paused
-    // }
+    setOriginalTime(prevTime => prevTime + 60);
+    
+    // If the timer is running, update the last tick time to preserve the timing
+    if (isRunning) {
+      lastTickTime.current = now;
+      nextTickDelay.current = remainingDelay;
+    }
   };
 
   const resetTimer = () => {
