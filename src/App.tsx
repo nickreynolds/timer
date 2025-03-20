@@ -14,10 +14,10 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Timer App</h1>
-        <button className="add-timer-button" onClick={addTimer}>
+    <div className="bg-background flex flex-col items-center justify-center min-h-screen">
+      <header className="flex flex-col items-center gap-4 w-full max-w-1200">
+        <h1 className="text-2xl font-bold text-foreground">Timer App</h1>
+        <button className="bg-secondary-background text-foreground px-4 py-2 rounded-md" onClick={addTimer}>
           Add New Timer
         </button>
         <div className="timers-grid">
@@ -27,7 +27,7 @@ function App() {
         </div>
       </header>
     </div>
-  );
+  )
 }
 
 export default App;

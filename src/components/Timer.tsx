@@ -26,8 +26,9 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
   } = useTimer();
 
   return (
-    <div className="timer-container">
+    <div className="flex flex-col w-[250px]">
       <TimerHeader originalTime={originalTime} onRemove={onRemove} />
+      <div className="bg-secondary-background rounded-b-md">
       <TimeDisplay
         time={time}
         originalTime={originalTime}
@@ -39,7 +40,7 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
         onKeyDown={handleKeyDown}
         inputRef={inputRef}
       />
-      <div className="timer-controls">
+      <div className="flex gap-2 mt-2 mb-2 justify-center">
         <button onClick={addMinute} className="timer-ghost-button">
           +1:00
         </button>
@@ -49,6 +50,7 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
         <button onClick={resetTimer} className="timer-ghost-button">
           Reset
         </button>
+      </div>
       </div>
     </div>
   );

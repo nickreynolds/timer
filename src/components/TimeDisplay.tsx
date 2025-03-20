@@ -29,7 +29,7 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
   const progress = (time / originalTime) * 100;
 
   return (
-    <div className="time-display-container">
+    <div className="relative w-[120px] h-[120px] m-auto">
       <ProgressCircle progress={progress} />
       <div className="time-display">
         {isEditing ? (
@@ -40,10 +40,10 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
             onChange={(e) => onEditValueChange(e.target.value)}
             onBlur={onBlur}
             onKeyDown={onKeyDown}
-            className="time-input"
+            className="time-input font-medium text-foreground text-2xl"
           />
         ) : (
-          <div onClick={onStartEditing} className="time-text">
+          <div onClick={onStartEditing} className="font-medium text-foreground text-2xl" tabIndex={0}>
             {formatTime(time)}
           </div>
         )}

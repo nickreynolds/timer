@@ -23,7 +23,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress }) => {
       />
       {/* Progress circle */}
       <circle
-        className="progress-ring__circle"
+        className="progress-ring__circle stroke-red"
         stroke="#dfedfb"
         strokeWidth="4"
         fill="transparent"

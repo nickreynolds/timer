@@ -1,6 +1,5 @@
 import React from 'react';
 import { formatTime } from '../utils/timeUtils';
-import './TimerHeader.css';
 
 interface TimerHeaderProps {
   originalTime: number;
@@ -9,9 +8,9 @@ interface TimerHeaderProps {
 
 const TimerHeader: React.FC<TimerHeaderProps> = ({ originalTime, onRemove }) => {
   return (
-    <div className="timer-header">
+    <div className="flex items-center justify-between bg-tertiary-background text-foreground font-medium rounded-t-md p-4">
       <div >{formatTime(originalTime)} Timer</div>
-      <button className="remove-button" onClick={onRemove}>×</button>
+      <button className="" onClick={onRemove}>×</button>
     </div>
   );
 };

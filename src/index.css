@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 body {
   margin: 0;
   font-family: 'Roboto';
@@ -10,3 +12,9 @@ code {
     monospace;
 }
 
+@theme {
+  --color-background: #273238;
+  --color-secondary-background: #546e7a;
+  --color-tertiary-background: #37474f;
+  --color-foreground: #ffffff;
+}
