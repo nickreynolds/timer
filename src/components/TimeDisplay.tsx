@@ -43,9 +43,9 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
             className="time-input font-medium text-foreground text-2xl"
           />
         ) : (
-          <div onClick={onStartEditing} className="font-medium text-foreground text-2xl" tabIndex={0}>
+          <button onClick={onStartEditing} className="font-medium text-foreground text-2xl" tabIndex={0}>
             {formatTime(time)}
-          </div>
+          </button>
         )}
       </div>
     </div>
