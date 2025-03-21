@@ -14,6 +14,12 @@ pnpm start
 
 - add a timer using the button on-screen
 
+- run tests with
+
+```
+pnpm test
+```
+
 ## Bonus Features
 
 - Draggable handle on the radial progress bar was implemented
