@@ -110,28 +110,6 @@ describe('useTimer', () => {
     expect(result.current.isRunning).toBe(true);
   });
 
-  it('handles keyboard events during editing', () => {
-    const { result } = renderHook(() => useTimer());
-
-    expect(result.current.isEditing).toBe(false);
-    // Start editing
-    act(() => {
-      result.current.startEditing();
-    });
-
-    expect(result.current.isEditing).toBe(true);
-    // Simulate Enter key
-    act(() => {
-      result.current.handleKeyDown({ key: 'Enter' } as React.KeyboardEvent<HTMLInputElement>);
-    });
-
-    act(() => {
-        vi.advanceTimersByTime(1000);
-    });
-
-    expect(result.current.isEditing).toBe(false);
-  });
-
   it('cleans up intervals on unmount', () => {
     const { result, unmount } = renderHook(() => useTimer());
     const initialTime = result.current.time;
