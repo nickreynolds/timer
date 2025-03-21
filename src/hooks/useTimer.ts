@@ -31,8 +31,7 @@ export const useTimer = () => {
         const diff = scheduledTime - Date.now();
 
         // Schedule regular ticks
-        intervalId = window.setTimeout(() => {
-        
+        intervalId = window.setTimeout(() => {        
             setTime((prevTime) => prevTime - 1);
             lastTickTime.current = Date.now();
           }, 1000 + diff);
@@ -41,7 +40,7 @@ export const useTimer = () => {
 
     return () => {
       if (intervalId) {
-        clearInterval(intervalId);
+        clearTimeout(intervalId);
       }
       if (initialDelayId) {
         clearTimeout(initialDelayId);
@@ -84,9 +83,16 @@ export const useTimer = () => {
       const timeSinceLastTick = now - lastTickTime.current;
       nextTickDelay.current = 1000 - (timeSinceLastTick % 1000);
     } else {
-      lastTickTime.current = Date.now();
-
-      timerStartTime.current = Date.now() + nextTickDelay.current - ((originalTime - time + 1) * 1000);
+      // lastTickTime.current = Date.now();
+      if (originalTime !== time) {
+        if (nextTickDelay.current > 0) {
+          timerStartTime.current = Date.now() + nextTickDelay.current - ((originalTime - time + 1) * 1000);
+        } else {
+          timerStartTime.current = Date.now() - ((originalTime - time) * 1000);
+        }
+      } else {
+        timerStartTime.current = Date.now();
+      }
     }
     setIsRunning((prev) => !prev);
   };
@@ -116,9 +122,10 @@ export const useTimer = () => {
     nextTickDelay.current = 0;
   };
 
+  // timer progress is changed by method other than ticking (e.g. dragging the progress circle)
   const onForcedProgressChange = (progressPercentage: number) => {
-    console.log("onNewAngle", progressPercentage);
     const newTime = Math.round(progressPercentage * originalTime);
+    nextTickDelay.current = 0;
     setTime(newTime);
   };
 
