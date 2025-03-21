@@ -54,7 +54,7 @@ const Timer: React.FC<TimerProps> = ({ onRemove }) => {
             icon
             aria-label={isRunning ? "Pause" : "Play"}
           >
-            {isRunning ? <Pause /> : <Play />}
+            {isRunning ? <Pause data-testid="pause-icon"/> : <Play data-testid="play-icon"/>}
           </PrimaryButton>
           <GhostButton onClick={resetTimer}>Reset</GhostButton>
         </div>
