@@ -52,9 +52,9 @@ export const useTimer = () => {
     setIsEditing(true);
     setIsRunning(false);
     setEditValue(formatTime(time));
-    // setTimeout(() => {
+    setTimeout(() => {
       inputRef.current?.focus();
-    // }, 0);
+    }, 0);
   };
 
   const handleBlur = () => {

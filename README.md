@@ -28,6 +28,7 @@ pnpm start
 - I integrated tailwind for CSS (included migrating from CRA to vite) and moved most styles from .css files into tailwind
 - I setup vitest and added tests for `timeUtils.ts` and `ProgressCircle.tsx`
 - I added the "draggable handle" on the radial progress bar by bringing in and modifying some open source code
+- I used Cursor to stub out some tests, then fixed & added certain tests
 
 ## Known Bugs / Imperfections
 
