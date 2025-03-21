@@ -29,6 +29,7 @@ pnpm start
 - I setup vitest and added tests for `timeUtils.ts` and `ProgressCircle.tsx`
 - I added the "draggable handle" on the radial progress bar by bringing in and modifying some open source code
 - I used Cursor to stub out some tests, then fixed & added certain tests
+- I considered adding memoization of Timers to the TimersGrid component, but profiling did not show this to add any significant improvement, so I removed it. Would possibly investigate this further if any performance issues were seen.
 
 ## Known Bugs / Imperfections
 
