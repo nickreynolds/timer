@@ -35,4 +35,4 @@ pnpm start
 - The draggable handle on the radial progress bar is not positioned perfectly, and the positioning of it relies on a "magic number" which should be refactored out (if the size of the container is changed, the handle will be less "on-center")
 - The draggable handle should be decoupled from the radial progress bar (so that the progress bar component could be used in situations where it doesn't make sense to allow the user to modify progress directly)
 - should consider splitting the `useTimer` custom hook apart into one hook just for managing time updates (timer loop, pause, etc) and another for editing time directly?
-- when adding the draggable handle, I introduced some interdependence between the dra
+- when adding the draggable handle, I introduced some interdependence between the `useDraggable` hook and the `useTimer` hook and would intend to investigate ways to separate these in a cleaner way.

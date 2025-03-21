@@ -112,9 +112,9 @@ export const useTimer = () => {
     nextTickDelay.current = 0;
   };
 
-  const onNewAngle = (angle: number) => {
-    console.log("onNewAngle", angle);
-    const newTime = Math.round(angle * originalTime);
+  const onForcedProgressChange = (progressPercentage: number) => {
+    console.log("onNewAngle", progressPercentage);
+    const newTime = Math.round(progressPercentage * originalTime);
     setTime(newTime);
   };
 
@@ -133,6 +133,6 @@ export const useTimer = () => {
     addMinute,
     resetTimer,
     pauseTimer,
-    onNewAngle,
+    onForcedProgressChange,
   };
 };
