@@ -25,7 +25,7 @@ describe('ProgressCircle', () => {
 
     // unnecessary?
     // Check for progress circle
-    const progressCircle = svg.querySelector('.progress-ring__circle') as SVGElement;
+    const progressCircle = svg.querySelector('.progress-ring__circle-empty') as SVGElement;
     expect(progressCircle).toBeInTheDocument();
     expect(progressCircle?.getAttribute('stroke')).toBe('#dfedfb');
     expect(progressCircle?.getAttribute('stroke-width')).toBe('4');
@@ -38,7 +38,7 @@ describe('ProgressCircle', () => {
   it('calculates correct stroke-dashoffset for different progress values', () => {
     const { rerender } = render(<ProgressCircle progress={0} />);
     const svg = screen.getByRole('graphics-document', { hidden: true });
-    const progressCircle = svg.querySelector('.progress-ring__circle') as SVGElement;
+    const progressCircle = svg.querySelector('.progress-ring__circle-empty') as SVGElement;
     const circumference = 2 * Math.PI * 45; // r=45
     expect(progressCircle?.style.strokeDasharray).toBe(`${circumference} ${circumference}`);
     expect(progressCircle?.style.strokeDashoffset).toBe(`${circumference}`);
@@ -55,7 +55,7 @@ describe('ProgressCircle', () => {
   it('handles edge cases correctly', () => {
     const { rerender } = render(<ProgressCircle progress={-10} />);
     const svg = screen.getByRole('graphics-document', { hidden: true });
-    const progressCircle = svg.querySelector('.progress-ring__circle') as SVGElement;
+    const progressCircle = svg.querySelector('.progress-ring__circle-empty') as SVGElement;
     const circumference = 2 * Math.PI * 45;
     expect(progressCircle?.style.strokeDashoffset).toBe(`${circumference}`);
 

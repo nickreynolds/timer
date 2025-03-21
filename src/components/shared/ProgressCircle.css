@@ -2,6 +2,10 @@
   transform: rotate(-90deg);
 }
 
+.process-ring__circle-empty {
+  transition: none;
+}
+
 .progress-ring__circle {
   transition: stroke-dashoffset 0.3s ease;
 }

@@ -26,8 +26,8 @@ export const useDraggable = ({ initialAngle, onDragStart, onDrag }: { initialAng
         const radius = containerWidth / 2;
         const center = radius - width / 2;
         const radian = (initialAngle + .25) * Math.PI * 2 - Math.PI;
-        const dx = center + (radius - 5) * Math.cos(radian);
-        const dy = center + (radius - 5) * Math.sin(radian);
+        const dx = center + (radius - 5) * Math.cos(radian); // "-5 is a magic number"
+        const dy = center + (radius - 5) * Math.sin(radian); // "-5 is a magic number"
         setOffset({ dx, dy });
     }, [node]);
 
@@ -40,8 +40,8 @@ export const useDraggable = ({ initialAngle, onDragStart, onDrag }: { initialAng
         const radius = containerWidth / 2;
         const center = radius - width / 2;
         const radian = (angle + .25) * Math.PI * 2 - Math.PI;
-        const dx = center + (radius - 5) * Math.cos(radian);
-        const dy = center + (radius - 5) * Math.sin(radian);
+        const dx = center + (radius - 5) * Math.cos(radian); // "-5 is a magic number"
+        const dy = center + (radius - 5) * Math.sin(radian); // "-5 is a magic number"
         setOffset({ dx, dy });
     }, [node]);
 
@@ -70,8 +70,8 @@ export const useDraggable = ({ initialAngle, onDragStart, onDrag }: { initialAng
             );
             const sinValue = (dy - center) / centerDistance;
             const cosValue = (dx - center) / centerDistance;
-            dx = center + (radius - 5) * cosValue;
-            dy = center + (radius - 5) * sinValue;
+            dx = center + (radius - 5) * cosValue; // "-5 is a magic number"
+            dy = center + (radius - 5) * sinValue; // "-5 is a magic number"
 
             const radians = Math.atan2(dy - center, dx - center);
             const angle = (radians + Math.PI) / (Math.PI * 2);
@@ -120,8 +120,8 @@ export const useDraggable = ({ initialAngle, onDragStart, onDrag }: { initialAng
             );
             const sinValue = (dy - center) / centerDistance;
             const cosValue = (dx - center) / centerDistance;
-            dx = center + (radius - 5) * cosValue;
-            dy = center + (radius - 5) * sinValue;
+            dx = center + (radius - 5) * cosValue; // "-5 is a magic number"
+            dy = center + (radius - 5) * sinValue; // "-5 is a magic number"
 
             const radians = Math.atan2(dy - center, dx - center);
             const angle = (radians + Math.PI) / (Math.PI * 2);
@@ -129,7 +129,6 @@ export const useDraggable = ({ initialAngle, onDragStart, onDrag }: { initialAng
 
             const progress = ((angle + .25) % 1);
 
-            console.log("call onDrag", progress);
             onDrag((progress + .5) % 1);
 
             setOffset({ dx, dy });

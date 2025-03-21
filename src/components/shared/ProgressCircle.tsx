@@ -4,12 +4,12 @@ import { useDraggable } from "../../hooks/useDraggable";
 
 interface ProgressCircleProps {
   progress: number; // 0 to 100
-  onDragStart: () => void;
-  onDrag: (angle: number) => void;
-  isRunning: boolean;
+  onDragStart?: () => void;
+  onDrag?: (angle: number) => void;
+  isRunning?: boolean;
 }
 
-const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress, onDragStart, onDrag, isRunning }) => {
+const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress, onDragStart = () => {}, onDrag = () => {}, isRunning = false }) => {
 
   // make sure progress is between 0 and 100
   progress = Math.max(0, Math.min(progress, 100));
@@ -48,7 +48,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress, onDragStart, 
       />
       {/* Progress circle */}
       <circle
-        className={isRunning ? "progress-ring__circle" : ""}
+        className={isRunning ? "progress-ring__circle" : "progress-ring__circle-empty"}
         stroke="#dfedfb"
         strokeWidth="4"
         fill="transparent"
@@ -64,8 +64,9 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({ progress, onDragStart, 
     </svg>
       <div className="radial-progress-bar__circle" >
         <div
-          className="bg-foreground rounded-full absolute top-0 left-0 w-4 h-4"
-          ref={draggbleRef}
+          className="bg-foreground rounded-full absolute top-0 left-0 w-4 h-4 cursor-move"
+          // @ts-ignore
+          ref={draggbleRef as (node: HTMLElement) => void}
           style={{
               transform: `translate(${dx}px, ${dy}px)`,
               zIndex: 9999,
