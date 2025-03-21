@@ -62,6 +62,10 @@ export const useTimer = () => {
     setIsEditing(false);
     const newTime = parseEditValue(editValue);
     if (newTime > 0) {
+
+      lastTickTime.current = Date.now();
+      timerStartTime.current = Date.now();
+
       setTime(newTime);
       setOriginalTime(newTime);
       setIsRunning(true);

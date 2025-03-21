@@ -44,6 +44,7 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
   const formatEditValue = (value: string) => {
     value = value.replace(/\D/g, "");
     if (value.length <= 2) return value;
+    if (value.length == 3) return `${value.slice(0, 1)}:${value.slice(1)}`;
     return `${value.slice(0, 2)}:${value.slice(2)}`;
   };
 

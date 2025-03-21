@@ -36,3 +36,5 @@ pnpm start
 - The draggable handle should be decoupled from the radial progress bar (so that the progress bar component could be used in situations where it doesn't make sense to allow the user to modify progress directly)
 - should consider splitting the `useTimer` custom hook apart into one hook just for managing time updates (timer loop, pause, etc) and another for editing time directly?
 - when adding the draggable handle, I introduced some interdependence between the `useDraggable` hook and the `useTimer` hook and would intend to investigate ways to separate these in a cleaner way.
+- I'd also like to update the format of the time display so that when only seconds are shown, it shows only 2 digits (instead of e.g. "00:12") in a larger font (text should grow/shrink to fit container), and also to support hours (possibly even days). Improvements to the input would be needed, though.
+- Edge cases around timer input should be tested more

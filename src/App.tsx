@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Timer from "./components/Timer";
 import "./App.css";
+import TimersGrid from "./components/TimersGrid";
 
 function App() {
   const [timers, setTimers] = useState<number[]>([]);
@@ -23,11 +24,7 @@ function App() {
         >
           Add New Timer
         </button>
-        <div className="timers-grid">
-          {timers.map((id) => (
-            <Timer key={id} onRemove={() => removeTimer(id)} />
-          ))}
-        </div>
+        <TimersGrid timers={timers} onRemoveTimer={removeTimer} />
       </header>
     </div>
   );
